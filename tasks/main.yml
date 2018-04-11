@@ -1,10 +1,17 @@
 ---
-- name: Ensure ssh is present in Arch distros
+- name: Ensure sshd is present in Arch distros
   pacman:
     name: openssh
     state: present
   become: true
   when: ansible_os_family == 'Archlinux'
+
+- name: Ensure sshd is present in Debian distros
+  apt:
+    name: openssh-server
+    state: present
+  become: true
+  when: ansible_os_family == 'Debian'
 
 - name: Create primary unprivileged user account
   user:
