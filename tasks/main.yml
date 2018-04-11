@@ -13,6 +13,12 @@
   become: true
   when: ansible_os_family == 'Debian'
 
+- name: Ensure wheel group exists
+  group:
+    name: wheel
+    state: present
+  become: true
+
 - name: Create primary unprivileged user account
   user:
     name: "{{ ssh_user_username }}"
